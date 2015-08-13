@@ -39,7 +39,7 @@ function get_property($entry, $prop, $default = null)
  */
 function checktype($value, array $validTypes)
 {
-    $nativeTypes = [
+    $nativeTypes = array(
         'array'    => 'is_array',
         'bool'     => 'is_bool',
         'callable' => 'is_callable',
@@ -55,7 +55,7 @@ function checktype($value, array $validTypes)
         'resource' => 'is_resource',
         'scalar'   => 'is_scalar',
         'string'   => 'is_string',
-    ];
+    );
 
     $valid = false;
     foreach ($validTypes as $type) {
