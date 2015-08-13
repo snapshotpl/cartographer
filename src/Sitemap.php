@@ -29,4 +29,37 @@ class Sitemap extends AbstractSitemap
 
         return $this->addUrlToDocument(compact('loc', 'lastmod', 'changefreq', 'priority'));
     }
+
+    public function addItem(Item $item)
+    {
+        $loc = $item->getUrl();
+        $lastmod = $item->getLastmod();
+        $changefreq = $item->getChangefreq();
+        $priority = $item->getPriority();
+        $alternateLinks = $item->getAlternateMediaLinks();
+
+        $this->add($loc, $lastmod, $changefreq, $priority);
+
+        $this->addAlternateMediaLinks($alternateLinks);
+    }
+
+    protected function addAlternateMediaLinks(array $links)
+    {
+        if (empty($links)) {
+            return;
+        }
+
+        $elements = $this->rootNode->getElementsByTagName($this->getNodeName());
+
+        $lastElement = $elements->item($elements->length - 1);
+
+        foreach ($links as $media => $link) {
+            $alternateNode = $this->document->createElementNS('http://www.w3.org/1999/xhtml', 'xhtml:link');
+            $alternateNode->setAttribute('rel', 'alternate');
+            $alternateNode->setAttribute('media', $media);
+            $alternateNode->setAttribute('href', $link);
+
+            $lastElement->appendChild($alternateNode);
+        }
+    }
 }
