@@ -7,15 +7,19 @@
         {
             "name": "Dan Horrigan",
             "email": "dh@tackk.com"
+        },
+        {
+            "name": "Witold Wasiczko",
+            "email": "witold@wasiczko.pl"
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "4.*"
     },
     "require": {
-        "php": ">=5.4",
-        "league/flysystem": "1.0.*"
+        "php": ">=5.3"
     },
     "autoload": {
         "files": [

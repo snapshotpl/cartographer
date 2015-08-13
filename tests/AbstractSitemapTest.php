@@ -29,25 +29,25 @@ class AbstractSitemapTest extends PHPUnit_Framework_TestCase
 
     public function testFormatDateWithDates()
     {
-        $this->assertEquals('2005-01-01T00:00:00+00:00', $this->callProtectedMethod('formatDate', ['2005-01-01']));
-        $this->assertEquals('2005-01-01T00:00:01+00:00', $this->callProtectedMethod('formatDate', ['2005-01-01 12:00:01am']));
+        $this->assertEquals('2005-01-01T00:00:00+00:00', $this->callProtectedMethod('formatDate', array('2005-01-01')));
+        $this->assertEquals('2005-01-01T00:00:01+00:00', $this->callProtectedMethod('formatDate', array('2005-01-01 12:00:01am')));
     }
 
     public function testFormatDateWithUnixTimestamp()
     {
-        $this->assertEquals('2014-04-23T14:14:49+00:00', $this->callProtectedMethod('formatDate', ['1398262489']));
-        $this->assertEquals('2014-04-23T14:14:49+00:00', $this->callProtectedMethod('formatDate', [1398262489]));
+        $this->assertEquals('2014-04-23T14:14:49+00:00', $this->callProtectedMethod('formatDate', array('1398262489')));
+        $this->assertEquals('2014-04-23T14:14:49+00:00', $this->callProtectedMethod('formatDate', array(1398262489)));
     }
 
     public function testFormatDateWithInvalidDate()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $this->callProtectedMethod('formatDate', ['foo']);
+        $this->callProtectedMethod('formatDate', array('foo'));
     }
 
     public function testEscapeString()
     {
-        $this->assertEquals('&amp;&apos;&quot;&gt;&lt;', $this->callProtectedMethod('escapeString', ['&\'"><']));
+        $this->assertEquals('&amp;&apos;&quot;&gt;&lt;', $this->callProtectedMethod('escapeString', array('&\'"><')));
     }
 
     public function testHasMaxUrlCount()
@@ -72,7 +72,7 @@ class AbstractSitemapTest extends PHPUnit_Framework_TestCase
         $urlCount->setValue($this->abstractMock, AbstractSitemap::MAX_URLS);
 
         $this->setExpectedException('Tackk\Cartographer\MaxUrlCountExceededException');
-        $this->callProtectedMethod('addUrlToDocument', [['loc' => 'http://foo.com']]);
+        $this->callProtectedMethod('addUrlToDocument', array(array('loc' => 'http://foo.com')));
     }
 
     public function testGetUrlCount()

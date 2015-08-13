@@ -164,8 +164,8 @@ abstract class AbstractSitemap
      */
     protected function escapeString($string)
     {
-        $from = ['&', '\'', '"', '>', '<'];
-        $to   = ['&amp;', '&apos;', '&quot;', '&gt;', '&lt;'];
+        $from = array('&', '\'', '"', '>', '<');
+        $to   = array('&amp;', '&apos;', '&quot;', '&gt;', '&lt;');
 
         return str_replace($from, $to, $string);
     }

@@ -14,7 +14,7 @@ use InvalidArgumentException;
  */
 function get_property($entry, $prop, $default = null)
 {
-    checktype($entry, ['array', 'object', 'ArrayAccess']);
+    checktype($entry, array('array', 'object', 'ArrayAccess'));
 
     if (is_array($entry) || $entry instanceof \ArrayAccess) {
         return isset($entry[$prop]) ? $entry[$prop] : $default;

@@ -7,7 +7,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetPropertyFromArray()
     {
-        $entry = ['foo' => 'bar'];
+        $entry = array('foo' => 'bar');
         $this->assertEquals('bar', Cartographer\get_property($entry, 'foo'));
         $this->assertEquals(null, Cartographer\get_property($entry, 'foobar'));
         $this->assertEquals(false, Cartographer\get_property($entry, 'foobar', false));
@@ -24,7 +24,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPropertyFromArrayAccessObject()
     {
-        $entry = new ArrayIterator(['foo' => 'bar']);
+        $entry = new ArrayIterator(array('foo' => 'bar'));
         $this->assertEquals('bar', Cartographer\get_property($entry, 'foo'));
         $this->assertEquals(null, Cartographer\get_property($entry, 'foobar'));
         $this->assertEquals(false, Cartographer\get_property($entry, 'foobar', false));
@@ -39,14 +39,14 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
 
     public function testCheckTypePasses()
     {
-        $this->assertTrue(Cartographer\checktype([], ['array']));
-        $this->assertTrue(Cartographer\checktype([], ['ArrayAccess', 'array']));
+        $this->assertTrue(Cartographer\checktype(array(), array('array')));
+        $this->assertTrue(Cartographer\checktype(array(), array('ArrayAccess', 'array')));
     }
 
     public function testCheckTypeFails()
     {
         $this->setExpectedException('InvalidArgumentException',
             'Invalid type: ArrayObject, Expected type(s): array');
-        Cartographer\checktype(new ArrayObject(), ['array']);
+        Cartographer\checktype(new ArrayObject(), array('array'));
     }
 }
