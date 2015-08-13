@@ -28,7 +28,7 @@ class Item
     public function getLastmod()
     {
         if ($this->lastmod === null) {
-            $this->lastmod = new \DateTime();
+            $this->lastmod = date("Y-m-d", time());
         }
         return $this->lastmod;
     }
